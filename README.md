@@ -22,7 +22,7 @@ The Olympix Integrated Security action enables Olympix's vulnerability analysis 
 
 ## Usage
 
-Here's a workflow example that utilizes the Olympix Integrated Security action with default rules and uploads the result to the GitHub Code Scanning tool (It is necessary to enable `Read and write permissions` on GitHub `Workflow permissions` to upload result to GitHub Code Scanning).
+Here's a workflow example that utilizes the Olympix Integrated Security action with default rules and uploads the result to the GitHub Code Scanning tool (It is necessary to enable `Read and write permissions` on GitHub `Settings > Actions > General > Workflow permissions` to upload result to GitHub Code Scanning).
 
 ```shell
 name: Integrated Security Workflow
@@ -49,7 +49,7 @@ jobs:
 
 ![vulnerability_detail](https://github.com/olympix/integrated-security/blob/main/img/vulnerability_detail.PNG)
 
-Here's a workflow example that utilizes the Olympix Integrated Security action with `json` result to the Github console, and excludes `uninitialized state variable` and `default visibility` vulnerabilities.
+Here's a workflow example that utilizes the Olympix Integrated Security action with `json` result to the GitHub console, and excludes `uninitialized state variable` and `default visibility` vulnerabilities.
 
 ```shell
 name: Integrated Security Workflow
@@ -72,6 +72,16 @@ jobs:
 <br/>
 
 ![vulnerabilities_json](https://github.com/olympix/integrated-security/blob/main/img/vulnerability_json_output.PNG)
+
+<br/>
+
+## Analysis Options
+
+- `-w | --workspace-path`: Defines the root project directory path. It is important to know the project context to provide more accurate vulnerabilities analysis. The default is the current directory
+- `-p | --path`: Defines the Solidity project directory path to be analyzed. It can be used multiple times to include each project analysis directory. The default is the 'contracts' and 'src' directories if they exist, otherwise it is the same directory path of workspace
+- `-f | --output-format`: Defines result output format. The supported currently formats are: `tree`, `json`, `sarif` and `email`. The default is `tree`
+- `-o | --output-path`: Defines result output directory path (Enabled only for `json` and `sarif` formats). The default is showing result to terminal
+- `--no-<vulnerability id>`: Defines the vulnerabilities that may be ignored. It can be used multiple times to ignore each vulnerability type. The default ignores nothing
 
 <br/>
 
